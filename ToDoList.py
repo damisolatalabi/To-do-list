@@ -18,7 +18,7 @@ def viewTasks():
     else:
         print("\nYour To-Do List ----> ")
         for idx, task in enumerate(tasks, start = 1):
-            status = "[DONE]" if task["done"] else "[NOT DONE]"
+            status = "[done]" if task["done"] else "[NOT done]"
             print("{}. {} {}".format(idx, task["title"], status))
         print()
 
@@ -54,10 +54,15 @@ def markAsDone():
     except ValueError:
         print("Please enter a valid number!")
 
-
+def validateTasks():
+    ##to ensure  tasks have the done key.
+    for tasks in tasks:
+        if "done" not in task:
+            task["done"] = False   
 
 def main():
     """Main loop for the to-do list application."""
+    validateTasks()
     while True:
         displayMenu()
         try:
@@ -79,4 +84,3 @@ def main():
             print("Invalid input. Please enter a number between 1 and 5.")
 
 # Run the application
-main()

@@ -18,7 +18,7 @@ def viewTasks():
     else:
         print("\nYour To-Do List ----> ")
         for idx, task in enumerate(tasks, start = 1):
-            status = "[DONE]" if task["Done"] else "[NOT DONE]"
+            status = "[DONE]" if task["done"] else "[NOT DONE]"
             print("{}. {} {}".format(idx, task["title"], status))
         print()
 
@@ -60,22 +60,23 @@ def main():
     """Main loop for the to-do list application."""
     while True:
         displayMenu()
-        choice = int(input("Choose an option (1-5): "))S
-        if choice == "1":
-            viewTasks()
-        elif choice == "2":
-            addTask()
-        elif choice == "3":
-            removeTask()
-        elif choice == "4":
-            markAsDone()
-        elif choice == "5":
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid option! Please try again.")
+        try:
+            choice = input("Choose an option (1-5): ")
+            if choice == "1":
+                viewTasks()
+            elif choice == "2":
+                addTask()
+            elif choice == "3":
+                removeTask()
+            elif choice == "4":
+                markAsDone()
+            elif choice == "5":
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid option! Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 5.")
 
 # Run the application
 main()
-    
- 
